@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnCamara = findViewById(R.id.btnCamara);
         imgView = findViewById(R.id.imgView);
-        //kensyyyyyyyyyyyyyyy
+
 
         btnCamara.setOnClickListener(v -> abrirCamara());
     }
