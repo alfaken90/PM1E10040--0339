@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         btnCamara = findViewById(R.id.btnCamara);
         imgView = findViewById(R.id.imgView);
 
-<<<<<<< HEAD
         btnCamara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,10 +103,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-=======
 
         btnCamara.setOnClickListener(v -> abrirCamara());
->>>>>>> origin/Kensy_develop
     }
 
     private void abrirCamara() {
@@ -141,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-<<<<<<< HEAD
     private void AgregarContactoSQL(){
         SQLiteConexion conexion= new SQLiteConexion(this, Transacciones.NameDatabase,null,1);
         SQLiteDatabase db= conexion.getWritableDatabase();
@@ -166,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
         nota.setText("");
     }
 
-=======
     private File crearImagen() throws IOException {
         String nombreImagen = "foto_";
         File directorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -175,5 +170,4 @@ public class MainActivity extends AppCompatActivity {
         rutaImagen = imgTemp.getAbsolutePath();
         return imgTemp;
     }
->>>>>>> origin/Kensy_develop
 }
