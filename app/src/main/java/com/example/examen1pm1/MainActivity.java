@@ -40,19 +40,19 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //if (intent.resolveActivity(getPackageManager()) != null) {
 
-            File imgArchivo = null;
-            try {
-                imgArchivo = crearImagen();
-            } catch (IOException ex) {
-                Log.e("Error", ex.toString());
-            }
+        File imgArchivo = null;
+        try {
+            imgArchivo = crearImagen();
+        } catch (IOException ex) {
+            Log.e("Error", ex.toString());
+        }
 
-            if (imgArchivo != null) {
-                Uri fotoUri = FileProvider.getUriForFile(this,
-                        "com.example.examen1pm1.fileprovider", imgArchivo);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
-                startActivityForResult(intent, 1);
-            }
+        if (imgArchivo != null) {
+            Uri fotoUri = FileProvider.getUriForFile(this,
+                    "com.example.examen1pm1.fileprovider", imgArchivo);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
+            startActivityForResult(intent, 1);
+        }
 
         //}
 
