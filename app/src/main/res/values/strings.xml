@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">examen1PM1</string>
+    <string name="btnCamara">Cámara</string>
 </resources>
