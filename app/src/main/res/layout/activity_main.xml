@@ -12,6 +12,30 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="29dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="60dp"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintHorizontal_bias="0.555"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:srcCompat="@drawable/nota" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="30dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="55dp"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:srcCompat="@drawable/telefono" />
+
+        <ImageView
             android:id="@+id/imgView"
             android:layout_width="140dp"
             android:layout_height="140dp"
@@ -24,11 +48,13 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="356dp"
+            android:layout_width="300dp"
             android:layout_height="26dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:text="País"
             android:textAlignment="gravity"
+            android:textColor="#000000"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,6 +71,8 @@
             android:text="@string/btnCamara"
             android:textAlignment="center"
             android:textSize="18dp"
+            app:icon="@drawable/camara"
+            app:iconSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgView" />
@@ -72,10 +100,12 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="356dp"
+            android:layout_width="300dp"
             android:layout_height="26dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:text="Nombre:"
+            android:textColor="#000000"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +113,7 @@
             app:layout_constraintTop_toBottomOf="@+id/mSpinner" />
 
         <EditText
-            android:id="@+id/txtNombre"
+            android:id="@+id/mostar_nombre"
             android:layout_width="349dp"
             android:layout_height="40dp"
             android:layout_marginStart="70dp"
@@ -92,6 +122,7 @@
             android:ems="10"
             android:hint="Tu Nombre Completo"
             android:inputType="text"
+            android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,16 +130,18 @@
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="356dp"
+            android:layout_width="300dp"
             android:layout_height="26dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:text="Teléfono:"
             android:textAlignment="gravity"
+            android:textColor="#000000"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+            app:layout_constraintTop_toBottomOf="@+id/mostar_nombre" />
 
         <EditText
             android:id="@+id/txtTelefono"
@@ -120,6 +153,7 @@
             android:ems="10"
             android:hint="Tu Número de Teléfono"
             android:inputType="text"
+            android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -127,11 +161,13 @@
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="356dp"
+            android:layout_width="300dp"
             android:layout_height="26dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:text="Cita:"
             android:textAlignment="gravity"
+            android:textColor="#000000"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -139,7 +175,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtTelefono" />
 
         <EditText
-            android:id="@+id/txtNota"
+            android:id="@+id/mostrar_cita"
             android:layout_width="349dp"
             android:layout_height="80dp"
             android:layout_marginStart="70dp"
@@ -148,6 +184,8 @@
             android:ems="10"
             android:hint="Como conoces este contacto..."
             android:inputType="text"
+            android:textColor="#000000"
+            android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -161,9 +199,11 @@
             android:text="Salvar Contacto"
             android:textAlignment="center"
             android:textSize="18dp"
+            app:icon="@drawable/contacto"
+            app:iconSize="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNota" />
+            app:layout_constraintTop_toBottomOf="@+id/mostrar_cita" />
 
         <Button
             android:id="@+id/btnGuardados"
@@ -174,10 +214,35 @@
             android:text="Contactos Salvados"
             android:textAlignment="center"
             android:textSize="18dp"
+            app:icon="@drawable/salvados"
+            app:iconSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnGuardar" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="29dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCamara"
+            app:srcCompat="@drawable/lugar" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="23dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:srcCompat="@drawable/nombree" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

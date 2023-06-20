@@ -12,5 +12,4 @@ public class Transacciones {
     public static final String CreateTableContactos= "CREATE TABLE contactos " +
             "(id INTEGER PRIMARY KEY AUTOINCREMENT,"+
             "nombres TEXT, nota TEXT)";
-    public static Object DropTableFotos;
 }

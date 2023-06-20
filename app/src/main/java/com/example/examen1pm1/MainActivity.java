@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     EditText nota;
     Button guardar;
     Button guardados;
-
     private Spinner mSpinner;
 
     @Override
@@ -62,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         //LISTA DESPLEGALE
         mSpinner= (Spinner) findViewById(R.id.mSpinner);
         ArrayList<String>elementos= new ArrayList<>();
+        elementos.add("Selecciona... ");
         elementos.add("Honduras (504)");
         elementos.add("Costa Rica (506)");
         elementos.add("Guatemala (502)");
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String elemento= (String) mSpinner.getAdapter().getItem(position);
                 Toast.makeText(MainActivity.this, "Seleccionaste; "+elemento, Toast.LENGTH_SHORT).show();
+                AgregarContactoSQL();
             }
 
             @Override
@@ -83,11 +84,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        nombre= (EditText) findViewById(R.id.txtNombre);
+        nombre= (EditText) findViewById(R.id.mostar_nombre);
         telefono= (EditText) findViewById(R.id.txtTelefono);
-        nota= (EditText)  findViewById(R.id.txtNota);
+        nota= (EditText)  findViewById(R.id.mostrar_cita);
         guardar= (Button)  findViewById(R.id.btnGuardar);
         guardados= (Button)  findViewById(R.id.btnGuardados);
+        mSpinner=(Spinner) findViewById(R.id.mSpinner);
 
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,12 +99,10 @@ public class MainActivity extends AppCompatActivity {
                     AgregarContactoSQL();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Porfavor llene todos los campos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Debes de llenar todos los campos", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-
 
         btnCamara.setOnClickListener(v -> abrirCamara());
     }
