@@ -3,7 +3,11 @@ package com.example.examen1pm1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -12,28 +16,110 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.example.examen1pm1.Conexion.SQLiteConexion;
+import com.example.examen1pm1.Conexion.Transacciones;
+import com.example.examen1pm1.db.dbPaises;
+import com.example.examen1pm1.modelos.paises;
+
+import java.util.ArrayList;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnCamara;
+    // Elementos en el Layout por orden
     ImageView imgView;
+    Button btnCamara;
+    Spinner spPaises;
+    EditText txtNombre, txtTelefono, txtNota;
+    Button btnGuardar;
+    Button btnGuardados;
+
+
+
     String rutaImagen;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnCamara = findViewById(R.id.btnCamara);
         imgView = findViewById(R.id.imgView);
+        btnCamara = findViewById(R.id.btnCamara);
+        spPaises = findViewById(R.id.spPaises);
+        txtNombre = findViewById(R.id.txtNombre);
+        txtTelefono = findViewById(R.id.txtTelefono);
+        txtNota =findViewById(R.id.txtNota);
 
 
-        btnCamara.setOnClickListener(v -> abrirCamara());
+        //Llenar Spinner con metodo
+        List<paises> listaPaises = llenarPaises();
+        ArrayAdapter<paises> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,listaPaises);
+        spPaises.setAdapter(arrayAdapter);
+
+        //Seleccion ID de opcion Spinner
+        spPaises.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int idPais = ((paises) parent.getSelectedItem()).getId();
+                String nombrePais = ((paises) parent.getSelectedItem()).getNombre();
+                //Toast.makeText(MainActivity.this,"Seleccion: " + idPais + " "+ nombrePais,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //Evento abrir camara, tomar foto y guardarla en el dispositivo
+        btnCamara.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirCamara();
+            }
+        });
+
+        //Guardar registro primera vez
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+    }
+
+    //Llenar el Spinner
+    @SuppressLint("Range")
+    private List<paises> llenarPaises() {
+        List<paises> listaPaises = new ArrayList<>();
+        dbPaises DBPaises = new dbPaises(MainActivity.this);
+        Cursor cursor = DBPaises.mostrarPaises();
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    paises p = new paises();
+                    p.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                    p.setNombre(cursor.getString(cursor.getColumnIndex("nombre")));
+                    listaPaises.add(p);
+                } while (cursor.moveToNext());
+            }
+
+        }
+        DBPaises.close();
+        return listaPaises;
     }
 
     private void abrirCamara() {
