@@ -176,8 +176,8 @@
 
         <EditText
             android:id="@+id/txtNota"
-            android:layout_width="349dp"
-            android:layout_height="80dp"
+            android:layout_width="351dp"
+            android:layout_height="60dp"
             android:layout_marginStart="70dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="70dp"
