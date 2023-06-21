@@ -5,6 +5,7 @@ import androidx.core.content.FileProvider;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,13 +36,12 @@ public class MainActivity extends AppCompatActivity {
     Button btnCamara;
     ImageView imgView;
     String rutaImagen;
-
     EditText nombre;
     EditText telefono;
     EditText nota;
-    Button guardar;
     Button guardados;
-    private Spinner mSpinner;
+    Button guardar;
+    Spinner combocontactos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,63 +51,33 @@ public class MainActivity extends AppCompatActivity {
         btnCamara = findViewById(R.id.btnCamara);
         imgView = findViewById(R.id.imgView);
 
-        btnCamara.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirCamara();
-            }
-        });
-
-        //LISTA DESPLEGALE
-        mSpinner= (Spinner) findViewById(R.id.mSpinner);
-        ArrayList<String>elementos= new ArrayList<>();
-        elementos.add("Selecciona... ");
-        elementos.add("Honduras (504)");
-        elementos.add("Costa Rica (506)");
-        elementos.add("Guatemala (502)");
-        elementos.add("El Salvador (503)");
-        ArrayAdapter adp= new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1,elementos);
-
-        mSpinner.setAdapter(adp);
-
-        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String elemento= (String) mSpinner.getAdapter().getItem(position);
-                Toast.makeText(MainActivity.this, "Seleccionaste; "+elemento, Toast.LENGTH_SHORT).show();
-                AgregarContactoSQL();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        nombre= (EditText) findViewById(R.id.mostar_nombre);
-        telefono= (EditText) findViewById(R.id.txtTelefono);
-        nota= (EditText)  findViewById(R.id.mostrar_cita);
-        guardar= (Button)  findViewById(R.id.btnGuardar);
+        nombre= (EditText) findViewById(R.id.txtnombre);
+        telefono= (EditText) findViewById(R.id.txttelefono);
+        nota= (EditText)  findViewById(R.id.txtcita);
+        combocontactos=(Spinner) findViewById(R.id.mSpinner);
         guardados= (Button)  findViewById(R.id.btnGuardados);
-        mSpinner=(Spinner) findViewById(R.id.mSpinner);
+        guardar= (Button)  findViewById(R.id.btnGuardar);
 
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                     AddContacto();
+                     Toast.makeText(getApplicationContext(),"Datos: " + nombre.getText().toString() + " "+telefono.getText().toString() + " "+nota.getText().toString(), Toast.LENGTH_LONG).show();
+            }
+        });
 
-                if(nombre.length() == 0){
-                    Toast.makeText(getApplicationContext(), "Debes de escribir un nombre", Toast.LENGTH_LONG).show();
-                }
-                if(telefono.length() == 0){
-                    Toast.makeText(getApplicationContext(), "Debes de escribir un numero de telefono", Toast.LENGTH_LONG).show();
-                }
-                if(nota.length() == 0){
-                    Toast.makeText(getApplicationContext(), "Debes de escribir un nota", Toast.LENGTH_LONG).show();
-                }
-                if(!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !nota.getText().toString().isEmpty())
-                {
-                    AgregarContactoSQL();
-                }
+        guardados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ActivityList.class);
+                startActivity(intent);
+            }
+        });
+
+        btnCamara.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirCamara();
             }
         });
 
@@ -145,30 +115,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void AgregarContactoSQL(){
-        SQLiteConexion conexion= new SQLiteConexion(this, Transacciones.NameDatabase,null,1);
-        SQLiteDatabase db= conexion.getWritableDatabase();
-
-        ContentValues values= new ContentValues();
-        values.put(Transacciones.nombres, nombre.getText().toString());
-        values.put(Transacciones.telefono, telefono.getText().toString());
-        values.put(Transacciones.nota, nota.getText().toString());
-
-        Long result = db.insert(Transacciones.tablacontactos, Transacciones.id, values);
-        Toast.makeText(getApplicationContext(), "Registro Exitoso " + result.toString()
-                ,Toast.LENGTH_LONG).show();
-
-        db.close();
-
-        ScreenClean();
-    }
-    private void ScreenClean()
-    {
-        nombre.setText("");
-        telefono.setText("");
-        nota.setText("");
-    }
-
     private File crearImagen() throws IOException {
         String nombreImagen = "foto_";
         File directorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -176,5 +122,26 @@ public class MainActivity extends AppCompatActivity {
 
         rutaImagen = imgTemp.getAbsolutePath();
         return imgTemp;
+    }
+
+    private void AddContacto()
+    {
+        SQLiteConexion conexion = new SQLiteConexion(this, Transacciones.NameDatabase,null,1);
+        SQLiteDatabase db = conexion.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put(Transacciones.nombre, nombre.getText().toString());
+        valores.put(Transacciones.telefono, telefono.getText().toString());
+        valores.put(Transacciones.nota, nota.getText().toString());
+        Long result = db.insert(Transacciones.tablacontactos, Transacciones.id, valores);
+        Toast.makeText(getApplicationContext(), "Registro Ingresado : " + result.toString(),Toast.LENGTH_LONG ).show();
+        db.close();
+        CleanScreen();
+    }
+
+    private void CleanScreen()
+    {
+        nombre.setText("");
+        telefono.setText("");
+        nota.setText("");
     }
 }

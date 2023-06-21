@@ -18,9 +18,9 @@ public class SQLiteConexion extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(Transacciones.CreateTableContactos);
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL(Transacciones.DROPTableContactos);
+        onCreate(db);
     }
 }
