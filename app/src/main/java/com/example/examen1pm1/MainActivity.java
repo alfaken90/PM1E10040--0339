@@ -94,12 +94,19 @@ public class MainActivity extends AppCompatActivity {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(nombre.length() == 0){
+                    Toast.makeText(getApplicationContext(), "Debes de escribir un nombre", Toast.LENGTH_LONG).show();
+                }
+                if(telefono.length() == 0){
+                    Toast.makeText(getApplicationContext(), "Debes de escribir un numero de telefono", Toast.LENGTH_LONG).show();
+                }
+                if(nota.length() == 0){
+                    Toast.makeText(getApplicationContext(), "Debes de escribir un nota", Toast.LENGTH_LONG).show();
+                }
                 if(!nombre.getText().toString().isEmpty() && !telefono.getText().toString().isEmpty() && !nota.getText().toString().isEmpty())
                 {
                     AgregarContactoSQL();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Debes de llenar todos los campos", Toast.LENGTH_LONG).show();
                 }
             }
         });
