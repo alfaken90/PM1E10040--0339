@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final String BASE_NOMBRE = "db_examen1.db";
-    private static final int BASE_VERSION = 1;
+    private static final int BASE_VERSION = 2;
     protected static final String TABLE_PAISES = "t_paises";
     protected static final String TABLE_CONTACTOS = "t_contactos";
 
@@ -34,9 +34,9 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE "+ TABLE_CONTACTOS + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "pais TEXT, " +
+                "nombre TEXT, " +
                 "telefono TEXT, " +
-                "nota TEXT, " +
-                "imagen BLOB)");
+                "nota TEXT)");
 
     }
 

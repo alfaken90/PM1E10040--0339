@@ -6,18 +6,16 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
-import java.sql.Blob;
-
-public class dbContactos extends DbHelper {
+public class DbContactos extends DbHelper {
 
     Context context;
 
-    public dbContactos(@Nullable Context context) {
+    public DbContactos(@Nullable Context context) {
         super(context);
         this.context = context;
     }
 
-    public long insertaContacto(String pais, String nombre, String telefono, String nota, byte imagen) {
+    public long insertaContacto(String pais, String nombre, String telefono, String nota) {
         long id = 0;
         try {
             DbHelper dbHelper = new DbHelper(context);
@@ -27,7 +25,7 @@ public class dbContactos extends DbHelper {
             values.put("nombre", nombre);
             values.put("telefono", telefono);
             values.put("nota", nota);
-            values.put("imagen", imagen);
+            //values.put("imagen", imagen);
 
             id = db.insert(TABLE_CONTACTOS, null, values);
 

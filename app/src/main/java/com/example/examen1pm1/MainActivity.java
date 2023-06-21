@@ -26,9 +26,11 @@ import android.widget.Toast;
 
 import com.example.examen1pm1.Conexion.SQLiteConexion;
 import com.example.examen1pm1.Conexion.Transacciones;
+import com.example.examen1pm1.db.DbContactos;
 import com.example.examen1pm1.db.dbPaises;
 import com.example.examen1pm1.modelos.paises;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import java.io.File;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     String rutaImagen;
+    int idPais;
 
 
     @Override
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         txtNombre = findViewById(R.id.txtNombre);
         txtTelefono = findViewById(R.id.txtTelefono);
         txtNota =findViewById(R.id.txtNota);
+        btnGuardar = findViewById(R.id.btnGuardar);
 
 
         //Llenar Spinner con metodo
@@ -72,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         spPaises.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int idPais = ((paises) parent.getSelectedItem()).getId();
+                idPais = ((paises) parent.getSelectedItem()).getId();
                 String nombrePais = ((paises) parent.getSelectedItem()).getNombre();
                 //Toast.makeText(MainActivity.this,"Seleccion: " + idPais + " "+ nombrePais,Toast.LENGTH_LONG).show();
             }
@@ -95,7 +99,21 @@ public class MainActivity extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Convertir la IMG en un array para BD
+               /* Bitmap bitmap = BitmapFactory.decodeFile(rutaImagen);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+                byte[] byteArray = stream.toByteArray();*/
 
+                DbContactos dbContactos = new DbContactos(MainActivity.this);
+                long id = dbContactos.insertaContacto(Integer.toString(idPais), txtNombre.getText().toString(), txtTelefono.getText().toString(),txtNota.getText().toString());
+
+                if (id>0){
+                    Toast.makeText(MainActivity.this,"Registro guardado: "+id,Toast.LENGTH_LONG).show();
+                    limpiarCampos();
+                }else {
+                    Toast.makeText(MainActivity.this,"Error al guardar registro",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -160,5 +178,12 @@ public class MainActivity extends AppCompatActivity {
 
         rutaImagen = imgTemp.getAbsolutePath();
         return imgTemp;
+    }
+
+    private void limpiarCampos(){
+        imgView.setImageBitmap(null);
+        txtNombre.setText("");
+        txtTelefono.setText("");
+        txtNota.setText("");
     }
 }
