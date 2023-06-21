@@ -58,6 +58,32 @@ public class MainActivity extends AppCompatActivity {
         guardados= (Button)  findViewById(R.id.btnGuardados);
         guardar= (Button)  findViewById(R.id.btnGuardar);
 
+        ArrayList<String> elementos= new ArrayList<>();
+        elementos.add("");
+        elementos.add("Honduras 504");
+        elementos.add("Costa Rica 506");
+        elementos.add("Guatemala 502");
+        elementos.add("El Salvador 503");
+        ArrayAdapter adp= new ArrayAdapter(MainActivity.this, android.R.layout.simple_spinner_dropdown_item,elementos);
+
+        combocontactos= (Spinner) findViewById(R.id.mSpinner);
+
+        combocontactos.setAdapter(adp);
+
+        combocontactos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String elemento= (String) combocontactos.getAdapter().getItem(position);
+                Toast.makeText(MainActivity.this,"Selecionaste: "+ elemento,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
