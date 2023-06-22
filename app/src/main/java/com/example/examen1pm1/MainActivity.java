@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -193,5 +195,46 @@ public class MainActivity extends AppCompatActivity {
         txtNombre.setText("");
         txtTelefono.setText("");
         txtNota.setText("");
+    }
+
+    public void alerta() {
+        if(txtNombre.getText().toString().equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Debe llenar el campo Nombre");
+            builder.setTitle("Alerta!");
+            builder.setCancelable(false);
+            builder.setNegativeButton("Cerrar", (DialogInterface.OnClickListener) (dialog, which) -> {
+                dialog.cancel();
+            });
+
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
+        if(txtTelefono.getText().toString().equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Debe llenar el campo Telefono");
+            builder.setTitle("Alerta!");
+            builder.setCancelable(false);
+            builder.setNegativeButton("Cerrar", (DialogInterface.OnClickListener) (dialog, which) -> {
+                dialog.cancel();
+            });
+
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
+        if(txtNota.getText().toString().equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Debe llenar el campo Nota");
+            builder.setTitle("Alerta!");
+            builder.setCancelable(false);
+            builder.setNegativeButton("Cerrar", (DialogInterface.OnClickListener) (dialog, which) -> {
+                dialog.cancel();
+            });
+
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
     }
 }
