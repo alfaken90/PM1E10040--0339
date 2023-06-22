@@ -13,7 +13,9 @@
         android:layout_height="48dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
+        android:backgroundTint="#1293C5"
         android:text="Compartir"
+        app:icon="@drawable/compartir"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rvListaContactos" />
 
@@ -24,7 +26,9 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
+        android:backgroundTint="#1293C5"
         android:text="Imagen"
+        app:icon="@drawable/camara"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnEliminar"
         app:layout_constraintTop_toBottomOf="@+id/rvListaContactos" />
@@ -33,8 +37,11 @@
         android:id="@+id/btnAtras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginEnd="300dp"
+        android:backgroundTint="#1293C5"
         android:text="Atrás"
+        app:icon="@drawable/regresaar"
         app:layout_constraintBottom_toTopOf="@+id/rvListaContactos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,8 +49,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvListaContactos"
-        android:layout_width="390dp"
-        android:layout_height="463dp"
+        android:layout_width="356dp"
+        android:layout_height="466dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
         android:layout_marginBottom="172dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +64,9 @@
         android:layout_height="48dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="20dp"
+        android:backgroundTint="#1293C5"
         android:text="Eliminar"
+        app:icon="@drawable/eliminar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCompartir" />
 
@@ -66,8 +77,11 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="25dp"
+        android:backgroundTint="#1293C5"
         android:text="Actualizar"
+        app:icon="@drawable/actualizar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnEliminar"
         app:layout_constraintTop_toBottomOf="@+id/btnVerImagen" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
