@@ -87,21 +87,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Spinner
+            android:id="@+id/spPaises"
+            android:layout_width="361dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"></Spinner>
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="300dp"
             android:layout_height="26dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
             android:text="Nombre:"
             android:textColor="#000000"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mSpinner" />
+            app:layout_constraintTop_toBottomOf="@+id/spPaises" />
 
         <EditText
-            android:id="@+id/txtnombre"
+            android:id="@+id/txtNombre"
             android:layout_width="349dp"
             android:layout_height="40dp"
             android:layout_marginStart="70dp"
@@ -109,7 +121,7 @@
             android:layout_marginEnd="70dp"
             android:ems="10"
             android:hint="Tu Nombre Completo"
-            android:inputType="text"
+            android:inputType="text|textPersonName"
             android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -129,10 +141,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtnombre" />
+            app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
 
         <EditText
-            android:id="@+id/txttelefono"
+            android:id="@+id/txtTelefono"
             android:layout_width="349dp"
             android:layout_height="40dp"
             android:layout_marginStart="70dp"
@@ -140,7 +152,7 @@
             android:layout_marginEnd="70dp"
             android:ems="10"
             android:hint="Tu Número de Teléfono"
-            android:inputType="text"
+            android:inputType="phone"
             android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -160,18 +172,18 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txttelefono" />
+            app:layout_constraintTop_toBottomOf="@+id/txtTelefono" />
 
         <EditText
-            android:id="@+id/txtcita"
-            android:layout_width="349dp"
-            android:layout_height="80dp"
+            android:id="@+id/txtNota"
+            android:layout_width="351dp"
+            android:layout_height="60dp"
             android:layout_marginStart="70dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="70dp"
             android:ems="10"
             android:hint="Como conoces este contacto..."
-            android:inputType="text"
+            android:inputType="text|textLongMessage"
             android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -191,7 +203,7 @@
             app:iconSize="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtcita" />
+            app:layout_constraintTop_toBottomOf="@+id/txtNota" />
 
         <Button
             android:id="@+id/btnGuardados"
@@ -225,21 +237,12 @@
             android:layout_width="23dp"
             android:layout_height="26dp"
             android:layout_marginStart="18dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="52dp"
             app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintHorizontal_bias="0.366"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:srcCompat="@drawable/nombree" />
-
-        <Spinner
-            android:id="@+id/mSpinner"
-            android:layout_width="372dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
