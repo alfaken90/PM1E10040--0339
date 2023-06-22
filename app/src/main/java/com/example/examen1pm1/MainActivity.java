@@ -24,8 +24,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.examen1pm1.Conexion.SQLiteConexion;
-import com.example.examen1pm1.Conexion.Transacciones;
+
 import com.example.examen1pm1.db.DbContactos;
 import com.example.examen1pm1.db.dbPaises;
 import com.example.examen1pm1.modelos.paises;
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnGuardados;
 
 
-
     String rutaImagen;
     int idPais;
 
@@ -63,13 +61,14 @@ public class MainActivity extends AppCompatActivity {
         spPaises = findViewById(R.id.spPaises);
         txtNombre = findViewById(R.id.txtNombre);
         txtTelefono = findViewById(R.id.txtTelefono);
-        txtNota =findViewById(R.id.txtNota);
+        txtNota = findViewById(R.id.txtNota);
         btnGuardar = findViewById(R.id.btnGuardar);
+        btnGuardados = findViewById(R.id.btnGuardados);
 
 
         //Llenar Spinner con metodo
         List<paises> listaPaises = llenarPaises();
-        ArrayAdapter<paises> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,listaPaises);
+        ArrayAdapter<paises> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listaPaises);
         spPaises.setAdapter(arrayAdapter);
 
         //Seleccion ID de opcion Spinner
@@ -100,20 +99,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Convertir la IMG en un array para BD
-               Bitmap bitmap = BitmapFactory.decodeFile(rutaImagen);
+                Bitmap bitmap = BitmapFactory.decodeFile(rutaImagen);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
 
                 DbContactos dbContactos = new DbContactos(MainActivity.this);
-                long id = dbContactos.insertaContacto(Integer.toString(idPais), txtNombre.getText().toString(), txtTelefono.getText().toString(),txtNota.getText().toString(),byteArray);
+                long id = dbContactos.insertaContacto(Integer.toString(idPais), txtNombre.getText().toString(), txtTelefono.getText().toString(), txtNota.getText().toString(), byteArray);
 
-                if (id>0){
-                    Toast.makeText(MainActivity.this,"Registro guardado: "+id,Toast.LENGTH_LONG).show();
+                if (id > 0) {
+                    Toast.makeText(MainActivity.this, "Registro guardado: " + id, Toast.LENGTH_LONG).show();
                     limpiarCampos();
-                }else {
-                    Toast.makeText(MainActivity.this,"Error al guardar registro",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Error al guardar registro", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        //Pasar a la pantalla de Registros guardados
+        btnGuardados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ListaActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -180,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         return imgTemp;
     }
 
-    private void limpiarCampos(){
+    private void limpiarCampos() {
         imgView.setImageBitmap(null);
         txtNombre.setText("");
         txtTelefono.setText("");
