@@ -24,8 +24,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.examen1pm1.Conexion.SQLiteConexion;
-import com.example.examen1pm1.Conexion.Transacciones;
 import com.example.examen1pm1.db.DbContactos;
 import com.example.examen1pm1.db.dbPaises;
 import com.example.examen1pm1.modelos.paises;
