@@ -15,7 +15,7 @@ public class DbContactos extends DbHelper {
         this.context = context;
     }
 
-    public long insertaContacto(String pais, String nombre, String telefono, String nota) {
+    public long insertaContacto(String pais, String nombre, String telefono, String nota, byte[] imagen) {
         long id = 0;
         try {
             DbHelper dbHelper = new DbHelper(context);
@@ -25,7 +25,7 @@ public class DbContactos extends DbHelper {
             values.put("nombre", nombre);
             values.put("telefono", telefono);
             values.put("nota", nota);
-            //values.put("imagen", imagen);
+            values.put("imagen", imagen);
 
             id = db.insert(TABLE_CONTACTOS, null, values);
 

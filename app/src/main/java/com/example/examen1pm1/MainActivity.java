@@ -100,13 +100,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Convertir la IMG en un array para BD
-               /* Bitmap bitmap = BitmapFactory.decodeFile(rutaImagen);
+               Bitmap bitmap = BitmapFactory.decodeFile(rutaImagen);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-                byte[] byteArray = stream.toByteArray();*/
+                byte[] byteArray = stream.toByteArray();
 
                 DbContactos dbContactos = new DbContactos(MainActivity.this);
-                long id = dbContactos.insertaContacto(Integer.toString(idPais), txtNombre.getText().toString(), txtTelefono.getText().toString(),txtNota.getText().toString());
+                long id = dbContactos.insertaContacto(Integer.toString(idPais), txtNombre.getText().toString(), txtTelefono.getText().toString(),txtNota.getText().toString(),byteArray);
 
                 if (id>0){
                     Toast.makeText(MainActivity.this,"Registro guardado: "+id,Toast.LENGTH_LONG).show();
