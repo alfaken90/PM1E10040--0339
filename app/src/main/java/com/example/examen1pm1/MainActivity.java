@@ -107,13 +107,17 @@ public class MainActivity extends AppCompatActivity {
                 byte[] byteArray = stream.toByteArray();
 
                 DbContactos dbContactos = new DbContactos(MainActivity.this);
-                long id = dbContactos.insertaContacto(Integer.toString(idPais), txtNombre.getText().toString(), txtTelefono.getText().toString(), txtNota.getText().toString(), byteArray);
 
-                if (id > 0) {
-                    Toast.makeText(MainActivity.this, "Registro guardado: " + id, Toast.LENGTH_LONG).show();
-                    limpiarCampos();
+                if(!txtNombre.getText().toString().equals("") && !txtNota.getText().toString().equals("") && !txtTelefono.getText().toString().equals("")) {
+                    long id = dbContactos.insertaContacto(Integer.toString(idPais), txtNombre.getText().toString(), txtTelefono.getText().toString(),txtNota.getText().toString(),byteArray);
+                    if (id > 0) {
+                        Toast.makeText(MainActivity.this, "Registro guardado: " + id, Toast.LENGTH_LONG).show();
+                        limpiarCampos();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Error al guardar registro", Toast.LENGTH_LONG).show();
+                    }
                 } else {
-                    Toast.makeText(MainActivity.this, "Error al guardar registro", Toast.LENGTH_LONG).show();
+                    alerta();
                 }
             }
         });
