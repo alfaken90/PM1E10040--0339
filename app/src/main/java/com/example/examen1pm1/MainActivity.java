@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -104,17 +106,26 @@ public class MainActivity extends AppCompatActivity {
                 byte[] byteArray = stream.toByteArray();
 
                 DbContactos dbContactos = new DbContactos(MainActivity.this);
-                long id = dbContactos.insertaContacto(Integer.toString(idPais), txtNombre.getText().toString(), txtTelefono.getText().toString(),txtNota.getText().toString(),byteArray);
 
-                if (id>0){
+                if(!txtNombre.getText().toString().equals("") && !txtNota.getText().toString().equals("") && !txtTelefono.getText().toString().equals("")) {
+                    long id = dbContactos.insertaContacto(Integer.toString(idPais), txtNombre.getText().toString(), txtTelefono.getText().toString(),txtNota.getText().toString(),byteArray);
+                    if (id > 0) {
+                        Toast.makeText(MainActivity.this, "Contacto Guardado Correctamente", Toast.LENGTH_SHORT).show();
+                        limpiarCampos();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Error Al Guardar el Contacto", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    alerta();
+                }
+                /*if (id>0){
                     Toast.makeText(MainActivity.this,"Registro guardado: "+id,Toast.LENGTH_LONG).show();
                     limpiarCampos();
                 }else {
                     Toast.makeText(MainActivity.this,"Error al guardar registro",Toast.LENGTH_LONG).show();
-                }
+                }*/
             }
         });
-
     }
 
     //Llenar el Spinner
@@ -183,5 +194,46 @@ public class MainActivity extends AppCompatActivity {
         txtNombre.setText("");
         txtTelefono.setText("");
         txtNota.setText("");
+    }
+
+    public void alerta() {
+        if(txtNombre.getText().toString().equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Debe llenar el campo Nombre");
+            builder.setTitle("Alerta!");
+            builder.setCancelable(false);
+            builder.setNegativeButton("Cerrar", (DialogInterface.OnClickListener) (dialog, which) -> {
+                dialog.cancel();
+            });
+
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
+        if(txtTelefono.getText().toString().equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Debe llenar el campo Telefono");
+            builder.setTitle("Alerta!");
+            builder.setCancelable(false);
+            builder.setNegativeButton("Cerrar", (DialogInterface.OnClickListener) (dialog, which) -> {
+                dialog.cancel();
+            });
+
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
+        if(txtNota.getText().toString().equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Debe llenar el campo Nota");
+            builder.setTitle("Alerta!");
+            builder.setCancelable(false);
+            builder.setNegativeButton("Cerrar", (DialogInterface.OnClickListener) (dialog, which) -> {
+                dialog.cancel();
+            });
+
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
     }
 }
