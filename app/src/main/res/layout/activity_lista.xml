@@ -8,32 +8,6 @@
     tools:context=".ListaActivity">
 
     <Button
-        android:id="@+id/btnCompartir"
-        android:layout_width="175dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
-        android:backgroundTint="#1293C5"
-        android:text="Compartir"
-        app:icon="@drawable/compartir"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvListaContactos" />
-
-    <Button
-        android:id="@+id/btnVerImagen"
-        android:layout_width="168dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
-        android:backgroundTint="#1293C5"
-        android:text="Imagen"
-        app:icon="@drawable/camara"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnEliminar"
-        app:layout_constraintTop_toBottomOf="@+id/rvListaContactos" />
-
-    <Button
         android:id="@+id/btnAtras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,30 +32,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btnEliminar"
-        android:layout_width="175dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="25dp"
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#1293C5"
-        android:text="Eliminar"
-        app:icon="@drawable/eliminar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCompartir" />
-
-    <Button
-        android:id="@+id/btnActualizar"
-        android:layout_width="168dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="25dp"
-        android:backgroundTint="#1293C5"
-        android:text="Actualizar"
-        app:icon="@drawable/actualizar"
+        android:text="- Un toque para llamar"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnEliminar"
-        app:layout_constraintTop_toBottomOf="@+id/btnVerImagen" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvListaContactos" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="-Mantener presionado para editar (Actualizar o Eliminar)"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
